@@ -3,6 +3,7 @@ package com.controller;
 import com.entity.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,12 +20,12 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/save")
-    public void save(User user) {
+    public void save(@Validated User user) {
         userService.save(user);
     }
 
     @RequestMapping("/update")
-    public User update(User user) {
+    public User update(@Validated User user) {
         return userService.update(user);
     }
 
