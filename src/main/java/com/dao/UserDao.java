@@ -2,15 +2,16 @@ package com.dao;
 
 import com.entity.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by Wzj on 2017/8/20 0020.
  */
+@Transactional
 @Repository
 public class UserDao {
 
@@ -37,7 +38,7 @@ public class UserDao {
     }
 
     public List<User> findAll() {
-        Query query = this.entityManager.createQuery("from User ", List.class);
-        return query.getResultList();
+        String hql = "FROM User u ORDER BY u.id DESC";
+        return this.entityManager.createQuery(hql, User.class).getResultList();
     }
 }
