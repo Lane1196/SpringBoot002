@@ -1,8 +1,14 @@
 package com.controller;
 
 import com.util.Logs;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Created by Wzj on 2017/3/13 0013.
@@ -19,7 +25,9 @@ public class HelloController {
     @RequestMapping("/")
     public String index() {
         Logs.info(word);
-        return "index";
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(now);
     }
 
     @RequestMapping("/hello1")
